@@ -9,8 +9,11 @@ if ("HEROKU_DYNO_URL" in process.env) {
 }
 
 // import env variables
-const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
-const DISCORD_CHANNEL_ID = process.env.DISCORD_CHANNEL_ID;
+// const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
+// const DISCORD_CHANNEL_ID = process.env.DISCORD_CHANNEL_ID;
+const TELEGRAM_CHAT_ID = '-999744387';
+const DISCORD_CHANNEL_ID = '1127227461487300638';
+
 const DISCORD_FORWARD_BOT = (process.env.DISCORD_FORWARD_BOT === 'true')
 
 console.log("Telegram chat id: " + TELEGRAM_CHAT_ID);
@@ -18,6 +21,10 @@ console.log("Discord channel id: " + DISCORD_CHANNEL_ID);
 
 // Discord -> Telegram handler
 discordClient.on("message", message => {
+
+	console.log('Incoming msg! ... : ');
+
+	// console.log('Tele Message is: ', message);
 
 	// the program currently check if the message's from a bot to check for duplicates.
 	// This isn't the best method but it's good enough.
@@ -41,6 +48,9 @@ discordClient.on("message", message => {
 	// convert bold text for telegram markdown
 	finalMessageContent = finalMessageContent.replace(/\*\*/g, '*');
 
+	console.log('Final Msg content ... : ', finalMessageContent);
+
+
 	var text = `*\[DISCORD\] ${message.author.username} (${message.author.username}#${message.author.discriminator}):*\n`;
 	text += finalMessageContent
 	text += ` ${attachmentUrls.join(' ')}`;
@@ -57,6 +67,9 @@ discordClient.on("message", message => {
 
 // Telegram -> Discord handler
 telegram.on("message", async (message) => {
+
+	console.log('Listening to Telegram ...');
+	console.log('Tele message: ', message);
 
 	// console.log(message)
 	if (message.chat.id != TELEGRAM_CHAT_ID) {

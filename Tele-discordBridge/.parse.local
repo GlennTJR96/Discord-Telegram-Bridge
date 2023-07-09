@@ -1,0 +1,10 @@
+{
+  "applications": {
+    "Tele-discordBridge": {
+      "applicationId": "Hq9NgCxrjfaWsK7wI5JUO2qLgXkTDtuTjV4iqLqx"
+    },
+    "_default": {
+      "link": "Tele-discordBridge"
+    }
+  }
+}
